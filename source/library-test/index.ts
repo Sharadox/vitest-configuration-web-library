@@ -20,12 +20,8 @@ export function defineProjectTest(
   const code = fileURLToPath(new URL(`${folder}/`, root));
   return {
     plugins: withReact ? [react()] : [],
-    // Self-imports resolve to the source, also when Vitest leaves a file to Node (the `sharadox-source` condition).
-    resolve: {
-      conditions: [SOURCE_CONDITION],
-      alias: [{ find: new RegExp(`^${escape(name)}/(.*)$`), replacement: `${code}$1` }],
-    },
-    ssr: { resolve: { conditions: [SOURCE_CONDITION], externalConditions: [SOURCE_CONDITION] } },
+    // Only the package's own imports resolve to its source; dependencies keep their published builds.
+    resolve: { alias: [{ find: new RegExp(`^${escape(name)}/(.*)$`), replacement: `${code}$1` }] },
     css: { preprocessorOptions: { scss: { loadPaths: [code] } } },
     test: {
       environment,
