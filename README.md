@@ -55,7 +55,7 @@ Run with `vitest run --coverage` so the thresholds are enforced.
 - `react`: boolean.
 - `coverage`: per-measure thresholds that override 100.
 
-Only the package's own name resolves to its source; dependencies keep their published builds.
+Only the package's own name resolves to its source; dependencies keep their published builds. Other `@sharadox` packages are processed by Vitest (not loaded by Node directly), because they use bundler-style imports such as `next/link`.
 
 ## Develop
 
