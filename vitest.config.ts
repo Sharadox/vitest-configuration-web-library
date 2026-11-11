@@ -5,7 +5,12 @@ const source = fileURLToPath(new URL("./source/", import.meta.url));
 
 export default defineConfig({
   // The library imports itself by package name; in tests that resolves to the TypeScript source.
-  resolve: { alias: [{ find: /^@sharadox\/vitest-configuration-web-library\/(.*)$/, replacement: `${source}$1` }] },
+  // Self-imports inside the source resolve to the source too, even when Vitest leaves a file to Node.
+  ssr: { resolve: { conditions: ["sharadox-source"], externalConditions: ["sharadox-source"] } },
+  resolve: {
+    conditions: ["sharadox-source"],
+    alias: [{ find: /^@sharadox\/vitest-configuration-web-library\/(.*)$/, replacement: `${source}$1` }],
+  },
   test: {
     environment: "node",
     include: ["source/**/?(*-)unit-test.{ts,tsx}"],
