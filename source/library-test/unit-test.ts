@@ -18,10 +18,7 @@ describe("defineLibraryTest", () => {
       benchmark: { include: ["source/**/?(*-)benchmark-test.{ts,tsx}"] },
     });
     expect(configuration.plugins).toEqual([]);
-    expect(configuration.resolve!.conditions).toEqual(["sharadox-source"]);
-    expect(configuration.ssr).toEqual({
-      resolve: { conditions: ["sharadox-source"], externalConditions: ["sharadox-source"] },
-    });
+    expect(configuration.resolve).not.toHaveProperty("conditions");
   });
 
   test("measures every source file and requires full coverage", () => {

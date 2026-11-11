@@ -55,7 +55,7 @@ Run with `vitest run --coverage` so the thresholds are enforced.
 - `react`: boolean.
 - `coverage`: per-measure thresholds that override 100.
 
-The `sharadox-source` export condition is on for Vite and for Node, so a library importing itself by name always gets its TypeScript source in tests, built or not.
+Only the package's own name resolves to its source; dependencies keep their published builds.
 
 ## Develop
 
