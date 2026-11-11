@@ -19,6 +19,7 @@ describe("defineLibraryTest", () => {
     });
     expect(configuration.plugins).toEqual([]);
     expect(configuration.resolve).not.toHaveProperty("conditions");
+    expect(configuration.test!.server).toEqual({ deps: { inline: [/@sharadox\//] } });
   });
 
   test("measures every source file and requires full coverage", () => {

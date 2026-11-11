@@ -28,6 +28,9 @@ export function defineProjectTest(
       ...(withReact ? { css: { modules: { classNameStrategy: "non-scoped" as const } } } : {}),
       include: [`${folder}/**/?(*-)unit-test.{ts,tsx}`],
       exclude: ["**/node_modules/**", "**/test-fixture/**"],
+      // Sharadox packages ship bundler-style ESM (for example `import Link from "next/link"`), so Vitest processes
+      // them like source instead of handing them to Node.
+      server: { deps: { inline: [/@sharadox\//] } },
       benchmark: { include: [`${folder}/**/?(*-)benchmark-test.{ts,tsx}`] },
       coverage: {
         provider: "v8",
