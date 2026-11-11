@@ -5,9 +5,6 @@ import { FULL_COVERAGE, NOT_MEASURED } from "@sharadox/vitest-configuration-web-
 import { readPackageName } from "@sharadox/vitest-configuration-web-library/package-name";
 import type { TestOptions } from "@sharadox/vitest-configuration-web-library/library-test/type";
 
-/** The package export condition that points at TypeScript source instead of the build. */
-export const SOURCE_CONDITION = "sharadox-source";
-
 const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
 
 /**
