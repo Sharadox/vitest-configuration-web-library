@@ -7,4 +7,4 @@
 - Tests: source/**/?(*-)unit-test.{ts,tsx}; benchmarks: ?(*-)benchmark-test; test-fixture/ skipped.
 - Coverage: v8, thresholds 100 for statements/branches/functions/lines; run `vitest run --coverage`.
 - Peer deps: vitest, @vitest/coverage-v8 (and happy-dom for browser tests).
-- Licence: Sharadox Open Source Licence 0.1.0
+- License: Sharadox Open Source License 0.1.0
