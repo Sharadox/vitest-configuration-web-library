@@ -5,6 +5,9 @@ import { FULL_COVERAGE, NOT_MEASURED } from "@sharadox/vitest-configuration-web-
 import { readPackageName } from "@sharadox/vitest-configuration-web-library/package-name";
 import type { TestOptions } from "@sharadox/vitest-configuration-web-library/library-test/type";
 
+/** Where style-web-library's Sass helpers are, from the project's root. */
+const STYLE_HELPER_PATH = "node_modules/@sharadox/style-web-library/distribution/";
+
 const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
 
 /**
@@ -22,7 +25,8 @@ export function defineProjectTest(
     plugins: withReact ? [react()] : [],
     // Only the package's own imports resolve to its source; dependencies keep their published builds.
     resolve: { alias: [{ find: new RegExp(`^${escape(name)}/(.*)$`), replacement: `${code}$1` }] },
-    css: { preprocessorOptions: { scss: { loadPaths: [code] } } },
+    // The project's own code, then style-web-library's shared Sass helpers (`@use "style-helper"`).
+    css: { preprocessorOptions: { scss: { loadPaths: [code, fileURLToPath(new URL(STYLE_HELPER_PATH, root))] } } },
     test: {
       environment,
       ...(withReact ? { css: { modules: { classNameStrategy: "non-scoped" as const } } } : {}),
