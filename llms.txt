@@ -9,3 +9,4 @@
 - Peer deps: vitest, @vitest/coverage-v8 (and happy-dom for browser tests).
 - /package-name: readPackageName(root): the package.json name of a project folder
 - License: Sharadox Open Source License 0.1.0
+- Sass load path also includes node_modules/@sharadox/style-web-library/distribution (`@use "style-helper"`)

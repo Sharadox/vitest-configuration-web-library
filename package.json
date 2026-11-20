@@ -1,6 +1,6 @@
 {
   "name": "@sharadox/vitest-configuration-web-library",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "Shared Vitest configurations for Sharadox libraries and applications: self-imports by package name, test file patterns, React and Sass support, and 100% coverage thresholds.",
   "private": false,
   "license": "SEE LICENSE IN LICENCA.md",
@@ -25,7 +25,8 @@
     "LICENCA.md",
     "LICENSE.md",
     "NOTICE.md",
-    "llms.txt"
+    "llms.txt",
+    "CHANGELOG.md"
   ],
   "sideEffects": false,
   "engines": {

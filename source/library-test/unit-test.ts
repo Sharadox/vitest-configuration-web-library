@@ -40,6 +40,12 @@ describe("defineLibraryTest", () => {
       environment: "happy-dom",
       css: { modules: { classNameStrategy: "non-scoped" } },
     });
-    expect(configuration.css).toEqual({ preprocessorOptions: { scss: { loadPaths: [source] } } });
+    expect(configuration.css).toEqual({
+      preprocessorOptions: {
+        scss: {
+          loadPaths: [source, fileURLToPath(new URL("node_modules/@sharadox/style-web-library/distribution/", root))],
+        },
+      },
+    });
   });
 });
