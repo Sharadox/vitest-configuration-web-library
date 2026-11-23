@@ -8,6 +8,11 @@ import type { TestOptions } from "@sharadox/vitest-configuration-web-library/lib
 /** Where style-web-library's Sass helpers are, from the project's root. */
 const STYLE_HELPER_PATH = "node_modules/@sharadox/style-web-library/distribution/";
 
+/** The setup file browser-like tests get, beside this file (TypeScript in source, JavaScript once built). */
+const BROWSER_ANIMATION = fileURLToPath(
+  import.meta.url.replace(/library-test\/index\.(\w+)$/, "browser-animation/index.$1"),
+);
+
 const escape = (text: string) => text.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
 
 /**
@@ -29,6 +34,7 @@ export function defineProjectTest(
     css: { preprocessorOptions: { scss: { loadPaths: [code, fileURLToPath(new URL(STYLE_HELPER_PATH, root))] } } },
     test: {
       environment,
+      ...(environment === "happy-dom" ? { setupFiles: [BROWSER_ANIMATION] } : {}),
       ...(withReact ? { css: { modules: { classNameStrategy: "non-scoped" as const } } } : {}),
       include: [`${folder}/**/?(*-)unit-test.{ts,tsx}`],
       exclude: ["**/node_modules/**", "**/test-fixture/**"],
