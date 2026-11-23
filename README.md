@@ -40,18 +40,19 @@ Run with `vitest run --coverage` so the thresholds are enforced.
 
 ## API
 
-| Import               | Export                               | Description                                                                                                  |
-| -------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `…/library-test`     | `defineLibraryTest(options)`         | Library configuration, code in `source/`                                                                     |
-| `…/library-test`     | `defineProjectTest(folder, options)` | The same for any code folder                                                                                 |
-| `…/application-test` | `defineApplicationTest(options)`     | Next.js application: code in `src/`, `happy-dom` and React by default, `src/app/**` left to end-to-end tests |
-| `…/package-name`     | `readPackageName(root)`              | The `name` in `<root>/package.json`                                                                          |
-| `…/coverage`         | `FULL_COVERAGE`, `NOT_MEASURED`      | The thresholds, and the files never measured (tests, `type.ts`, fixtures, `entry/`)                          |
+| Import                | Export                               | Description                                                                                                      |
+| --------------------- | ------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
+| `…/library-test`      | `defineLibraryTest(options)`         | Library configuration, code in `source/`                                                                         |
+| `…/library-test`      | `defineProjectTest(folder, options)` | The same for any code folder                                                                                     |
+| `…/application-test`  | `defineApplicationTest(options)`     | Next.js application: code in `src/`, `happy-dom` and React by default, `src/app/**` left to end-to-end tests     |
+| `…/package-name`      | `readPackageName(root)`              | The `name` in `<root>/package.json`                                                                              |
+| `…/coverage`          | `FULL_COVERAGE`, `NOT_MEASURED`      | The thresholds, and the files never measured (tests, `type.ts`, fixtures, `entry/`)                              |
+| `…/browser-animation` | (a setup file)                       | A cancelled animation's `finished` rejection is handled, as in browsers (motion cancels animations all the time) |
 
 `options`:
 
 - `root`: the project folder URL (required).
-- `environment`: `"node"` or `"happy-dom"`.
+- `environment`: `"node"` or `"happy-dom"` (which also gets the `browser-animation` setup file).
 - `react`: boolean.
 - `coverage`: per-measure thresholds that override 100.
 

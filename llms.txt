@@ -2,7 +2,7 @@
 
 > Shared Vitest configs: package self-imports resolve to source, standard test-file patterns, optional React/happy-dom, 100% coverage thresholds.
 
-- `defineLibraryTest({ root: new URL("./", import.meta.url), environment?: "node" | "happy-dom", react?: boolean, coverage?: { branches?: number, ... } })` from `@sharadox/vitest-configuration-web-library/library-test` (code in source/).
+- `defineLibraryTest({ root: new URL("./", import.meta.url), environment?: "node" | "happy-dom", react?: boolean, coverage?: { branches?: number, ... } })` from `@sharadox/vitest-configuration-web-library/library-test` (code in source/). happy-dom projects get the setup file `…/browser-animation`: a cancelled animation's finished promise rejects as handled, as in browsers.
 - `defineApplicationTest({ root })` from `…/application-test` (code in src/, happy-dom + React default, src/app/** excluded from coverage).
 - Tests: source/**/?(*-)unit-test.{ts,tsx}; benchmarks: ?(*-)benchmark-test; test-fixture/ skipped.
 - Coverage: v8, thresholds 100 for statements/branches/functions/lines; run `vitest run --coverage`.

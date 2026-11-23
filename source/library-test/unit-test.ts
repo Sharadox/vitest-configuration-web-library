@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, test } from "vitest";
 import { defineLibraryTest } from "@sharadox/vitest-configuration-web-library/library-test";
@@ -31,6 +32,13 @@ describe("defineLibraryTest", () => {
     expect(defineLibraryTest({ root, coverage: { branches: 90 } }).test!.coverage).toMatchObject({
       thresholds: { statements: 100, branches: 90 },
     });
+  });
+
+  test("gives browser-like tests the animation setup (cancelled animations handled, as in browsers)", () => {
+    const [setup] = defineLibraryTest({ root, environment: "happy-dom" }).test!.setupFiles as string[];
+    expect(setup).toMatch(/browser-animation\/index\.(ts|js)$/);
+    expect(existsSync(setup!)).toBe(true);
+    expect(defineLibraryTest({ root }).test).not.toHaveProperty("setupFiles");
   });
 
   test("adds React, readable CSS module names and Sass imports from source/", () => {
