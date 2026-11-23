@@ -13,9 +13,12 @@ interface Animation {
   finished: Promise<unknown>;
   cancel(): void;
 }
-const { prototype } = (globalThis as unknown as { Animation: { prototype: Animation } }).Animation;
-const cancel = prototype.cancel;
-prototype.cancel = function (this: Animation) {
-  this.finished.catch(() => {});
-  cancel.call(this);
-};
+// A file that runs in node inside a browser-like project has no animations: nothing to do.
+const prototype = (globalThis as unknown as { Animation?: { prototype: Animation } }).Animation?.prototype;
+if (prototype) {
+  const cancel = prototype.cancel;
+  prototype.cancel = function (this: Animation) {
+    this.finished.catch(() => {});
+    cancel.call(this);
+  };
+}
